@@ -129,7 +129,7 @@ $totalPages = ceil($totalOrders / $limit);
                 </a>
             </li>
             <li class="mb-4">
-                <a href="./admin_pengumuman.php" class="flex items-center space-x-2 text-gray-300 hover:text-white hover:bg-green-700 p-2 rounded-md">
+                <a href="./admin_penilaian.php" class="flex items-center space-x-2 text-gray-300 hover:text-white hover:bg-green-700 p-2 rounded-md">
                 <i class="fa-solid fa-magnifying-glass"></i>
                     <span>Penilaian</span>
                 </a>
