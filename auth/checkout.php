@@ -36,10 +36,12 @@ $stmt->execute();
 $stmt->bind_result($name);
 $stmt->fetch();
 $stmt->close();
-$conn->close();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,6 +49,7 @@ $conn->close();
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body class="bg-green-100 flex flex-col min-h-screen">
 
     <!-- Navbar -->
@@ -111,7 +114,7 @@ $conn->close();
                 <div id="productSelection">
                     <div class="product-group mb-4">
                         <select name="products[]" required class="w-full px-4 py-2 border rounded-lg">
-                            <?php foreach ($products as $product): ?>
+                            <?php foreach ($products as $product) : ?>
                                 <option value="<?php echo htmlspecialchars($product['id']); ?>">
                                     <?php echo htmlspecialchars($product['name']); ?> - Rp<?php echo htmlspecialchars($product['price']); ?>
                                 </option>
@@ -126,8 +129,8 @@ $conn->close();
         </form>
     </div>
 
-            <!-- Announcement Modal -->
-            <div id="pengumumanModal" class="fixed inset-0 flex items-center justify-center z-50 hidden bg-black bg-opacity-60 transition-opacity duration-300 ease-in-out">
+    <!-- Announcement Modal -->
+    <div id="pengumumanModal" class="fixed inset-0 flex items-center justify-center z-50 hidden bg-black bg-opacity-60 transition-opacity duration-300 ease-in-out">
         <div class="bg-white rounded-lg shadow-lg w-11/12 md:w-3/4 lg:w-1/2 transform transition-transform duration-300 ease-in-out scale-95">
             <div class="border-b px-6 py-3 flex justify-between items-center bg-green-600">
                 <h5 class="text-lg font-semibold text-white">Pengumuman</h5>
@@ -147,12 +150,12 @@ $conn->close();
     </footer>
 
     <script>
-document.getElementById('addProduct').addEventListener('click', function() {
-    const productGroup = document.createElement('div');
-    productGroup.classList.add('product-group', 'mb-4');
-    productGroup.innerHTML = `
+        document.getElementById('addProduct').addEventListener('click', function() {
+            const productGroup = document.createElement('div');
+            productGroup.classList.add('product-group', 'mb-4');
+            productGroup.innerHTML = `
         <select name="products[]" required class="w-full px-4 py-2 border rounded-lg">
-            <?php foreach ($products as $product): ?>
+            <?php foreach ($products as $product) : ?>
                 <option value="<?php echo htmlspecialchars($product['id']); ?>">
                     <?php echo htmlspecialchars($product['name']); ?> - Rp<?php echo htmlspecialchars($product['price']); ?>
                 </option>
@@ -160,34 +163,33 @@ document.getElementById('addProduct').addEventListener('click', function() {
         </select>
         <input type="number" name="quantities[]" min="1" required class="w-full px-4 py-2 border rounded-lg mt-2" placeholder="Quantity">
     `;
-    document.getElementById('productSelection').appendChild(productGroup);
-});
-
+            document.getElementById('productSelection').appendChild(productGroup);
+        });
     </script>
     <script>
         function toggleMobileMenu() {
             document.getElementById("mobileMenu").classList.toggle("hidden");
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const pengumumanButton = document.querySelector('a[href="#pengumuman"]');
             const pengumumanModal = document.getElementById('pengumumanModal');
             const closeModal = document.getElementById('closeModal');
 
             if (pengumumanButton) {
-                pengumumanButton.addEventListener('click', function (event) {
+                pengumumanButton.addEventListener('click', function(event) {
                     event.preventDefault();
                     pengumumanModal.classList.remove('hidden');
                 });
             }
 
             if (closeModal) {
-                closeModal.addEventListener('click', function () {
+                closeModal.addEventListener('click', function() {
                     pengumumanModal.classList.add('hidden');
                 });
             }
 
-            window.addEventListener('click', function (event) {
+            window.addEventListener('click', function(event) {
                 if (event.target === pengumumanModal) {
                     pengumumanModal.classList.add('hidden');
                 }
@@ -198,6 +200,7 @@ document.getElementById('addProduct').addEventListener('click', function() {
             document.getElementById("dropdown").classList.toggle("hidden");
         }
     </script>
-    
+
 </body>
+
 </html>
